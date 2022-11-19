@@ -1,3 +1,4 @@
+#include "mlx.h"
 #include "llx_internal.h"
 
 void	llx_destroy(t_llx *llx)
@@ -14,7 +15,6 @@ void	llx_destroy(t_llx *llx)
 		free(llx->windows);
 	}
 	if (llx->mlx)
-		mlx_destroy_display(llx->mlx);
-	free(llx->mlx);
-	free(this);
+		free(llx->mlx);
+	free(llx);
 }

@@ -2,7 +2,16 @@ NAME		= llx
 
 SRCS		= \
 			  main.c \
-			  
+			  srcs/llx/destroy.c \
+			  srcs/llx/exec.c \
+			  srcs/llx/exit.c \
+			  srcs/llx/init.c \
+			  srcs/llx/on_loop.c \
+			  srcs/llx/win/new.c \
+			  srcs/llx/win/delete.c \
+			  srcs/llx/win/event_handler_1.c \
+			  srcs/llx/win/event_handler_2.c \
+
 HEADERS		= \
 			  includes \
 
@@ -15,10 +24,13 @@ LIB_NAMES	= \
 			  libmlx \
 			  
 DYN_LIBS	= \
-			  Xext \
-			  X11 \
+
+FRAMEWORKS	= \
+			  OpenGL \
+			  AppKit \
 
 DYN_LIBS	:= $(addprefix -l, $(DYN_LIBS))
+FRAMEWORKS	:= $(addprefix -framework , $(FRAMEWORKS))
 
 LIBS		= $(subst lib,-l,$(notdir $(LIB_NAMES)))
 LIB_LD		= $(foreach lib,$(LIB_NAMES),-L$(lib))
@@ -48,7 +60,7 @@ NASMFLAGS	= -felf64
 all : $(NAME)
 
 $(NAME) : $(LIB_PATHS) $(OBJS)
-		$(CC) $(CCWFLGS) -o $(NAME) $(OBJS) $(LIB_LD) $(LIBS) $(DYN_LIBS)
+		$(CC) $(CCWFLGS) -o $(NAME) $(OBJS) $(LIB_LD) $(LIBS) $(DYN_LIBS) $(FRAMEWORKS)
 
 bonus : $(NAME)
 

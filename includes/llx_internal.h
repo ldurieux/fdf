@@ -3,7 +3,7 @@
 
 # include "llx.h"
 
-void	*llx_destroy(t_llx *llx);
+void	llx_destroy(t_llx *llx);
 
 int		llx_on_loop(t_llx *llx);
 
