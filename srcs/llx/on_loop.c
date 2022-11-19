@@ -11,8 +11,17 @@ static void	llx_on_exit(t_llx *llx)
 
 int	llx_on_loop(t_llx *llx)
 {
+	size_t		i;
+	t_llx_win	*win;
+
 	if (llx->exit_code != -1)
 		return (llx_on_exit(llx), 0);
+	i = (size_t)-1;
+	while (llx->windows[++i])
+	{
+		win = llx->windows[i];
+		mlx_put_image_to_window(llx->mlx, win->mlx_win, win->cache, 0, 0);
+	}
 	if (llx->on_loop)
 		if (!llx->on_loop(llx))
 			llx_exit(llx, 1);

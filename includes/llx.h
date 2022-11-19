@@ -10,7 +10,32 @@
 
 # define LLX_MAX_WIN	255
 
+# ifdef __gnu_linux__
+typedef t_xvar	mlx_ptr_t;
+typedef t_win_list	mlx_win_list_t;
+# endif
+
 typedef struct s_llx_win	t_llx_win;
+
+typedef struct s_point
+{
+	int32_t	x;
+	int32_t	y;
+}	t_point;
+
+typedef struct s_pointF
+{
+	float	x;
+	float	y;
+}	t_pointF;
+
+typedef struct s_rect
+{
+	int32_t	x;
+	int32_t	y;
+	int32_t	width;
+	int32_t	height;
+}	t_rect;
 
 typedef struct s_llx
 {

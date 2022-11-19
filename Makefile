@@ -11,6 +11,15 @@ SRCS		= \
 			  srcs/llx/win/delete.c \
 			  srcs/llx/win/event_handler_1.c \
 			  srcs/llx/win/event_handler_2.c \
+			  srcs/llx_paint/draw_tri.c \
+			  srcs/llx_paint/paint_line.c \
+			  srcs/llx_paint/draw_line_aa.c \
+			  srcs/llx_paint/draw_line.c \
+			  srcs/llx_paint/paint_tri.c \
+			  srcs/llx_paint/paint_pixel.c \
+			  srcs/llx_paint/is_in_bound.c \
+			  srcs/llx_paint/paint_fill.c \
+			  srcs/llx_paint/blend_pixel.c \
 
 HEADERS		= \
 			  includes \
@@ -24,10 +33,12 @@ LIB_NAMES	= \
 			  libmlx \
 			  
 DYN_LIBS	= \
+			  Xext \
+			  X11 \
 
 FRAMEWORKS	= \
-			  OpenGL \
-			  AppKit \
+#			  OpenGL \
+#			  AppKit \
 
 DYN_LIBS	:= $(addprefix -l, $(DYN_LIBS))
 FRAMEWORKS	:= $(addprefix -framework , $(FRAMEWORKS))
