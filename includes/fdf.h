@@ -18,6 +18,10 @@ typedef struct s_mat4x4
 
 void		fdf_mul_vec_mat4x4(t_vec3 *i, t_vec3 *o, t_mat4x4 *m);
 
+void		fdf_add_vec3(t_vec3 *i, t_vec3 *o);
+
 t_mat4x4	fdf_projection_matrix(void);
+t_mat4x4	fdf_isometric_projection_matrix(void);
+t_mat4x4	fdf_rotation_matrix(float yaw, float pitch, float roll);
 
 #endif // FDF_H

@@ -19,7 +19,7 @@
 
 # define BITS_PER_BYTE 8
 
-enum e_color : uint32_t
+enum e_color
 {
 	Llx_Transparent	= 0xff000000,
 	Llx_White		= 0x00ffffff,

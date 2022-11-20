@@ -23,6 +23,7 @@ SRCS		= \
 			  srcs/llx_paint/blend_pixel.c \
 			  srcs/fdf/matrices.c \
 			  srcs/fdf/mul_vec_mat4x4.c \
+			  srcs/fdf/add_vec3.c \
 
 HEADERS		= \
 			  includes \
@@ -37,12 +38,12 @@ LIB_NAMES	= \
 			  
 DYN_LIBS	= \
 			  m \
-			  #Xext \
-			  #X11 \
+			  Xext \
+			  X11 \
 
 FRAMEWORKS	= \
-			  OpenGL \
-			  AppKit \
+			  #OpenGL \
+			  #AppKit \
 
 DYN_LIBS	:= $(addprefix -l, $(DYN_LIBS))
 FRAMEWORKS	:= $(addprefix -framework , $(FRAMEWORKS))
