@@ -15,10 +15,14 @@
 
 void	llx_on_enter(t_llx_win *ptr)
 {
+	if (ptr->on_enter)
+		ptr->on_enter(ptr);
 }
 
 void	llx_on_leave(t_llx_win *ptr)
 {
+	if (ptr->on_leave)
+		ptr->on_leave(ptr);
 }
 
 void	llx_on_close(t_llx_win *ptr)

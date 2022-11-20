@@ -95,6 +95,14 @@ typedef struct s_llx_win
 	int		width;
 	int		height;
 	void	*cache;
+	void	(*on_key_down)(struct s_llx_win *win, int keycode);
+	void	(*on_key_up)(struct s_llx_win *win, int keycode);
+	void	(*on_mouse_down)(struct s_llx_win *win, int button, int x, int y);
+	void	(*on_mouse_up)(struct s_llx_win *win, int button, int x, int y);
+	void	(*on_mouse_move)(struct s_llx_win *win, int x, int y);
+	void	(*on_enter)(struct s_llx_win *win);
+	void	(*on_leave)(struct s_llx_win *win);
+	void	(*on_close)(struct s_llx_win *win);
 }	t_llx_win;
 
 t_llx_win	*llx_win_new(t_llx *llx, int width, int height, char *title);

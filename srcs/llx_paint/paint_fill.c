@@ -22,7 +22,7 @@ void	llx_paint_fill(t_llx_paint *paint)
 
 	if (!paint)
 		return ;
-	ptr = mlx_get_data_addr(paint->img, &data.pixel_bits,
+	ptr = (uint32_t *)mlx_get_data_addr(paint->img, &data.pixel_bits,
 			&data.line_bytes, &data.endian);
 	end = ptr + paint->bounds.height * data.line_bytes / 4;
 	color = paint->pen.ucolor;
