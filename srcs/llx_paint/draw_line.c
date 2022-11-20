@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldurieux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/20 13:17:25 by ldurieux          #+#    #+#             */
+/*   Updated: 2022/11/20 13:17:28 by ldurieux         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "llx_paint_internal.h"
 #include "llx_paint.h"
 
 //Bresenham's line algorithm
 //https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
-static void	draw_bresenham_line(t_llx_paint *paint, t_point p1, t_point p2, t_point delta)
+static void	draw_bresenham_line(t_llx_paint *paint, t_point p1, t_point p2,
+							t_point delta)
 {
 	t_point	slope;
 	int		error;
@@ -22,8 +35,8 @@ static void	draw_bresenham_line(t_llx_paint *paint, t_point p1, t_point p2, t_po
 		e2 = 2 * error;
 		cond1 = e2 >= delta.y;
 		cond2 = e2 <= delta.x;
-		if (cond1 && p1.x == p2.x ||
-			cond2 && p1.y == p2.y)
+		if ((cond1 && p1.x == p2.x)
+			|| (cond2 && p1.y == p2.y))
 			break ;
 		error += delta.y * cond1 + delta.x * cond2;
 		p1.x += slope.x * cond1;
@@ -31,7 +44,8 @@ static void	draw_bresenham_line(t_llx_paint *paint, t_point p1, t_point p2, t_po
 	}
 }
 
-static void	draw_simple_line(t_llx_paint *paint, t_point p1, t_point p2, t_point delta)
+static void	draw_simple_line(t_llx_paint *paint, t_point p1, t_point p2,
+						t_point delta)
 {
 	int	x;
 	int	y;

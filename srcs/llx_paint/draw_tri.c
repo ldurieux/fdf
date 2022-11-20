@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_tri.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldurieux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/20 13:17:33 by ldurieux          #+#    #+#             */
+/*   Updated: 2022/11/20 13:17:36 by ldurieux         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "llx_paint_internal.h"
 #include "llx_paint.h"
 
@@ -30,7 +42,8 @@ static t_bresenham_inter	get_next_point(t_bresenham_inter d)
 	while (1)
 	{
 		d.e2 = 2 * d.error;
-		d.error += d.delta.y * (d.e2 >= d.delta.y) + d.delta.x * (d.e2 <= d.delta.x);
+		d.error += d.delta.y * (d.e2 >= d.delta.y) + d.delta.x
+			* (d.e2 <= d.delta.x);
 		d.p1.x += d.slope.x * (d.e2 >= d.delta.y);
 		if (d.slope.y * (d.e2 <= d.delta.x))
 		{
@@ -40,7 +53,8 @@ static t_bresenham_inter	get_next_point(t_bresenham_inter d)
 	}
 }
 
-static void	draw_bottom_flat_triangle(t_llx_paint *paint, t_point p1, t_point p2, t_point p3)
+static void	draw_bottom_flat_triangle(t_llx_paint *paint, t_point p1,
+								t_point p2, t_point p3)
 {
 	t_bresenham_inter	left;
 	t_bresenham_inter	right;
@@ -56,7 +70,8 @@ static void	draw_bottom_flat_triangle(t_llx_paint *paint, t_point p1, t_point p2
 	draw_line(paint, left.p1, right.p1);
 }
 
-static void	draw_top_flat_triangle(t_llx_paint *paint, t_point p1, t_point p2, t_point p3)
+static void	draw_top_flat_triangle(t_llx_paint *paint, t_point p1, t_point p2,
+								t_point p3)
 {
 	t_bresenham_inter	left;
 	t_bresenham_inter	right;
@@ -87,7 +102,7 @@ void	draw_tri(t_llx_paint *paint, t_point p1, t_point p2, t_point p3)
 	{
 		p_tmp.y = p2.y;
 		p_tmp.x = (int)(p1.x + ((float)(p2.y - p1.y) / (float)(p3.y - p1.y))
-					* (p3.x - p1.x));
+				* (p3.x - p1.x));
 		draw_bottom_flat_triangle(paint, p1, p2, p_tmp);
 		draw_top_flat_triangle(paint, p2, p_tmp, p3);
 	}

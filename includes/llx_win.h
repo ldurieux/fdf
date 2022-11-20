@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   llx_win.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldurieux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/20 13:18:54 by ldurieux          #+#    #+#             */
+/*   Updated: 2022/11/20 13:18:55 by ldurieux         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LLX_WIN_H
 # define LLX_WIN_H
 
-#include <stdint.h>
-#include "libft.h"
+# include <stdint.h>
+# include "libft.h"
 
 typedef struct s_llx	t_llx;
 

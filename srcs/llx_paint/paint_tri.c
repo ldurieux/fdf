@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   paint_tri.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldurieux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/20 13:17:45 by ldurieux          #+#    #+#             */
+/*   Updated: 2022/11/20 13:17:50 by ldurieux         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "llx_paint.h"
 #include "llx_paint_internal.h"
 
 void	llx_paint_tri(t_llx_paint *paint, t_point p1, t_point p2, t_point p3)
 {
-	if (paint->brush.rgba.a != 0)
+	if (paint->brush.rgba.a != UINT8_MAX)
 	{
 		if (p2.y < p1.y)
 			ft_swap(&p1, &p2, sizeof(t_point));

@@ -14,6 +14,7 @@ SRCS		= \
 			  srcs/llx_paint/draw_tri.c \
 			  srcs/llx_paint/paint_line.c \
 			  srcs/llx_paint/draw_line_aa.c \
+			  srcs/llx_paint/draw_line_aa_utils.c \
 			  srcs/llx_paint/draw_line.c \
 			  srcs/llx_paint/paint_tri.c \
 			  srcs/llx_paint/paint_pixel.c \

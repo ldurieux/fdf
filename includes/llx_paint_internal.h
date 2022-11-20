@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   llx_paint_internal.h                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldurieux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/20 13:18:52 by ldurieux          #+#    #+#             */
+/*   Updated: 2022/11/20 13:18:54 by ldurieux         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LLX_PAINT_INTERNAL_H
 # define LLX_PAINT_INTERNAL_H
 
@@ -5,7 +17,7 @@
 # include "llx.h"
 # include <stdint.h>
 
-typedef struct s_llx_paint t_llx_paint;
+typedef struct s_llx_paint	t_llx_paint;
 
 typedef struct s_img_data
 {
