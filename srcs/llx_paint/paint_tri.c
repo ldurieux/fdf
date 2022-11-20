@@ -20,9 +20,8 @@ void	llx_paint_tri(t_llx_paint *paint, t_point p1, t_point p2, t_point p3)
 	b = paint->bounds;
 	b.width -= b.x;
 	b.height -= b.y;
-	if (p1.x < b.x || p2.x < b.x || p3.x < b.x
-		|| p1.y < b.y || p2.y < b.y || p3.y < b.y
-		|| p1.x >= b.width || p2.x >= b.width || p3.x >= b.width
+	if (p1.x < b.x || p2.x < b.x || p3.x < b.x || p1.y < b.y || p2.y < b.y
+		|| p3.y < b.y || p1.x >= b.width || p2.x >= b.width || p3.x >= b.width
 		|| p1.y >= b.height || p2.y >= b.height || p3.y >= b.height)
 		return ;
 	if (paint->brush.rgba.a != UINT8_MAX)
