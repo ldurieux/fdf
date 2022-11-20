@@ -7,6 +7,13 @@
 
 typedef struct s_llx_paint t_llx_paint;
 
+typedef struct s_img_data
+{
+	int	line_bytes;
+	int	pixel_bits;
+	int	endian;
+}	t_img_data;
+
 int		is_in_bound(t_llx_paint *paint, int x, int y);
 
 void	blend_pixel(t_llx_paint *paint, int x, int y, uint32_t color);

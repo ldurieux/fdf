@@ -4,7 +4,7 @@
 
 static void	connect_win(t_llx_win *w)
 {
-	mlx_win_list_t	*m;
+	void	*m;
 
 	m = w->mlx_win;
 	mlx_hook(m, LlxEvt_KeyPress, LlxMsk_KeyPress, llx_on_key_down, w);

@@ -3,22 +3,20 @@
 
 void	llx_paint_fill(t_llx_paint *paint)
 {
-	char		*ptr;
-	char		*end;
-	uint32_t	*tmp;
-	uint32_t	increment;
+	uint32_t	*ptr;
+	uint32_t	*end;
 	uint32_t	color;
+	t_img_data	data;
 
 	if (!paint)
 		return ;
-	ptr = paint->img->data;
-	increment = paint->img->bpp / BITS_PER_BYTE;
-	end = ptr + (ptrdiff_t)(paint->img->height * paint->img->width * increment);
+	ptr = mlx_get_data_addr(paint->img, &data.pixel_bits,
+		&data.line_bytes, &data.endian);
+	end = ptr + paint->bounds.height * data.line_bytes / 4;
 	color = paint->pen.ucolor;
 	while (ptr != end)
 	{
-		tmp = (int*)ptr;
-		*tmp = color;
-		ptr += increment;
+		*ptr = color;
+		ptr++;
 	}
 }

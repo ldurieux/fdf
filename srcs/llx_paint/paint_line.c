@@ -3,7 +3,7 @@
 
 void	llx_paint_line(t_llx_paint *paint, t_point p1, t_point p2)
 {
-	int	flags;
+	uint32_t	flags;
 
 	if (p1.x == p2.x || p1.y == p2.y)
 	{

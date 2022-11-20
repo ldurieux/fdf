@@ -10,11 +10,11 @@
 enum e_color
 {
 	Llx_Transparent	= 0x00000000,
-	Llx_White		= 0xffffffff,
-	Llx_Black		= 0xff000000,
-	Llx_Red			= 0xffff0000,
-	Llx_Green		= 0xff00ff00,
-	Llx_Blue		= 0xff0000ff,
+	Llx_White		= 0x00ffffff,
+	Llx_Black		= 0x00000000,
+	Llx_Red			= 0x00ff0000,
+	Llx_Green		= 0x0000ff00,
+	Llx_Blue		= 0x000000ff,
 	Llx_Yellow		= Llx_Red | Llx_Green,
 	Llx_Magenta		= Llx_Red | Llx_Blue,
 	Llx_Cyan		= Llx_Green | Llx_Blue,
@@ -42,7 +42,7 @@ typedef union u_color
 
 typedef struct s_llx_paint
 {
-	t_img		*img;
+	void		*img;
 	t_color		brush;
 	t_color		pen;
 	t_rect		bounds;

@@ -5,15 +5,9 @@
 # include <stdint.h>
 # include "libft.h"
 # include "mlx.h"
-# include "mlx_int.h"
 # include "llx_win.h"
 
 # define LLX_MAX_WIN	255
-
-# ifdef __gnu_linux__
-typedef t_xvar	mlx_ptr_t;
-typedef t_win_list	mlx_win_list_t;
-# endif
 
 typedef struct s_llx_win	t_llx_win;
 
@@ -39,7 +33,7 @@ typedef struct s_rect
 
 typedef struct s_llx
 {
-	mlx_ptr_t	*mlx;
+	void		*mlx;
 	t_llx_win	**windows;
 	uint8_t		last_win_id;
 	int			(*on_loop)(struct s_llx *llx);

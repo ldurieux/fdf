@@ -4,17 +4,13 @@
 void	llx_paint_pixel(t_llx_paint *paint, t_point p)
 {
 	uint32_t	*ptr;
-	char		*data;
-	int			size_line;
-	int			bpp;
+	t_img_data	data;
 
 	if (!paint)
 		return ;
 	if (!is_in_bound(paint, p.x, p.y))
 		return ;
-	data = paint->img->data;
-	size_line = paint->img->size_line;
-	bpp = paint->img->bpp;
-	ptr = (uint32_t*)(data + (p.y * size_line + p.x * (bpp / BITS_PER_BYTE)));
-	*ptr = paint->pen.ucolor;
+	ptr = (uint32_t*)mlx_get_data_addr(paint->img, &data.pixel_bits,
+		&data.line_bytes, &data.endian);
+	ptr[p.y * data.line_bytes / 4 + p.x] = paint->pen.ucolor;
 }

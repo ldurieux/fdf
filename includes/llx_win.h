@@ -3,7 +3,6 @@
 
 #include <stdint.h>
 #include "libft.h"
-#include "mlx_int.h"
 
 typedef struct s_llx	t_llx;
 
@@ -83,7 +82,7 @@ typedef struct s_llx_win
 	uint8_t	id;
 	int		width;
 	int		height;
-	t_img	*cache;
+	void	*cache;
 }	t_llx_win;
 
 t_llx_win	*llx_win_new(t_llx *llx, int width, int height, char *title);

@@ -21,13 +21,22 @@ int main()
 	if (!llx)
 		return (1);
 	win = llx_win_new(llx, 480, 360, "test");
-	paint = (t_llx_paint){win->cache, Llx_Transparent, Llx_White, (t_rect){0, 0, 480, 360}, 0};
+
+	paint = (t_llx_paint){win->cache, {Llx_Transparent}, {Llx_White}, (t_rect){0, 0, 480, 360}, 0};
 	llx_paint_fill(&paint);
 
-	paint.pen.ucolor = Llx_Blue;
-	llx_paint_line(&paint, (t_point){10, 10}, (t_point){300, 150});
-	paint.flags |= Paint_Flag_Antialiasing;
-	llx_paint_line(&paint, (t_point){10, 20}, (t_point){300, 160});
+	paint = (t_llx_paint){win->cache, {Llx_Transparent}, {Llx_Red}, (t_rect){0, 0, 480, 360}, 0};
+	for (int i = 0; i < 100; i++)
+		llx_paint_pixel(&paint, (t_point){i, 0});
+	paint = (t_llx_paint){win->cache, {Llx_Transparent}, {Llx_Green}, (t_rect){0, 0, 480, 360}, 0};
+	for (int i = 0; i < 100; i++)
+		llx_paint_pixel(&paint, (t_point){i, 1});
+	paint = (t_llx_paint){win->cache, {Llx_Transparent}, {Llx_Blue}, (t_rect){0, 0, 480, 360}, 0};
+	for (int i = 0; i < 100; i++)
+		llx_paint_pixel(&paint, (t_point){i, 2});
+
+	paint = (t_llx_paint){win->cache, {Llx_Transparent}, {Llx_Black}, (t_rect){0, 0, 480, 360}, 0};
+	llx_paint_line(&paint, (t_point){10, 10}, (t_point){200, 200});
 
 	llx->on_loop = on_loop;
 	return (llx_exec(llx));
