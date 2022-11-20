@@ -50,6 +50,7 @@ t_llx_win	*llx_win_new(t_llx *llx, int width, int height, char *title)
 	win = malloc(sizeof(t_llx_win));
 	if (!win)
 		return (NULL);
+	ft_memset(win, 0, sizeof(t_llx_win));
 	win->llx = llx;
 	win->id = llx->last_win_id;
 	win->width = width;

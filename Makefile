@@ -21,6 +21,8 @@ SRCS		= \
 			  srcs/llx_paint/is_in_bound.c \
 			  srcs/llx_paint/paint_fill.c \
 			  srcs/llx_paint/blend_pixel.c \
+			  srcs/fdf/matrices.c \
+			  srcs/fdf/mul_vec_mat4x4.c \
 
 HEADERS		= \
 			  includes \
@@ -34,6 +36,7 @@ LIB_NAMES	= \
 			  libmlx \
 			  
 DYN_LIBS	= \
+			  m \
 			  #Xext \
 			  #X11 \
 
@@ -72,7 +75,7 @@ NASMFLAGS	= -felf64
 all : $(NAME)
 
 $(NAME) : $(LIB_PATHS) $(OBJS)
-		$(CC) $(CCWFLGS) -o $(NAME) $(OBJS) $(LIB_LD) $(LIBS) $(DYN_LIBS) $(FRAMEWORKS)
+		$(CC) $(CCWFLGS) $(CCDBGFLGS) -o $(NAME) $(OBJS) $(LIB_LD) $(LIBS) $(DYN_LIBS) $(FRAMEWORKS)
 
 bonus : $(NAME)
 

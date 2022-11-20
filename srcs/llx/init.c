@@ -26,6 +26,7 @@ t_llx	*llx_init(void)
 	llx = malloc(sizeof(t_llx));
 	if (!llx)
 		return (on_error(NULL));
+	ft_memset(llx, 0, sizeof(t_llx));
 	llx->last_win_id = 0;
 	llx->on_loop = NULL;
 	llx->on_exit = NULL;
