@@ -2,6 +2,7 @@ NAME		= llx
 
 SRCS		= \
 			  main.c \
+			  cube.c \
 			  srcs/llx/destroy.c \
 			  srcs/llx/exec.c \
 			  srcs/llx/exit.c \
@@ -21,9 +22,14 @@ SRCS		= \
 			  srcs/llx_paint/is_in_bound.c \
 			  srcs/llx_paint/paint_fill.c \
 			  srcs/llx_paint/blend_pixel.c \
-			  srcs/fdf/matrices.c \
-			  srcs/fdf/mul_vec_mat4x4.c \
-			  srcs/fdf/add_vec3.c \
+			  srcs/llx_3d/add_vec3.c \
+			  srcs/llx_3d/matrices.c \
+			  srcs/llx_3d/mul_vec3_mat4x4.c \
+			  srcs/llx_3d/mul_vec3_unique.c \
+			  srcs/llx_3d/project_vec3.c \
+			  srcs/llx_3d/vec3_to_point.c \
+			  srcs/fdf/read_file.c \
+			  srcs/fdf/parse_data.c \
 
 HEADERS		= \
 			  includes \
@@ -38,12 +44,12 @@ LIB_NAMES	= \
 			  
 DYN_LIBS	= \
 			  m \
-			  Xext \
-			  X11 \
+			  #Xext \
+			  #X11 \
 
 FRAMEWORKS	= \
-			  #OpenGL \
-			  #AppKit \
+			  OpenGL \
+			  AppKit \
 
 DYN_LIBS	:= $(addprefix -l, $(DYN_LIBS))
 FRAMEWORKS	:= $(addprefix -framework , $(FRAMEWORKS))

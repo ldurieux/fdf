@@ -13,27 +13,26 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include <math.h>
+# include <fcntl.h>
 # include "libft.h"
+# include "ft_frwlist.h"
+# include "llx_paint.h"
+# include "llx_3d.h"
 
-typedef struct s_vec3
+typedef struct s_fdf
 {
-	float	x;
-	float	y;
-	float	z;
-}	t_vec3;
+	t_vec3		*points;
+	t_color		*colors;
+	t_size		map_size;
+	t_size		win_size;
+	t_vec3		rot;
+	t_vec3		trans;
+	t_mat4x4	proj_matrix;
+}	t_fdf;
 
-typedef struct s_mat4x4
-{
-	float	m[4][4];
-}	t_mat4x4;
+int	fdf_read_file(char *path, t_vec3 **points, t_color **colors,
+			t_size *size);
 
-void		fdf_mul_vec_mat4x4(t_vec3 *i, t_vec3 *o, t_mat4x4 *m);
-
-void		fdf_add_vec3(t_vec3 *i, t_vec3 *o);
-
-t_mat4x4	fdf_projection_matrix(void);
-t_mat4x4	fdf_isometric_projection_matrix(void);
-t_mat4x4	fdf_rotation_matrix(float yaw, float pitch, float roll);
+int	parse_data(char *data, t_vec3 **points, t_color **colors, t_size *size);
 
 #endif // FDF_H

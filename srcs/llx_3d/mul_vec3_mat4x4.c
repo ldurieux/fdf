@@ -10,24 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "llx_3d.h"
 
-void	fdf_mul_vec_mat4x4(t_vec3 *i, t_vec3 *o, t_mat4x4 *m)
+void	llx_mul_vec3_mat4x4(t_mat4x4 *matrix, t_vec3 *vec)
 {
 	float	w;
 
-	o->x = i->x * m->m[0][0] + i->y * m->m[1][0] + i->z * m->m[2][0]
-		+ m->m[3][0];
-	o->y = i->x * m->m[0][1] + i->y * m->m[1][1] + i->z * m->m[2][1]
-		+ m->m[3][1];
-	o->z = i->x * m->m[0][2] + i->y * m->m[1][2] + i->z * m->m[2][2]
-		+ m->m[3][2];
-	w = i->x * m->m[0][3] + i->y * m->m[1][3] + i->z * m->m[2][3]
-		+ m->m[3][3];
+	vec->x = vec->x * matrix->m[0][0] + vec->y * matrix->m[1][0] + vec->z * matrix->m[2][0] + matrix->m[3][0];
+	vec->y = vec->x * matrix->m[0][1] + vec->y * matrix->m[1][1] + vec->z * matrix->m[2][1] + matrix->m[3][1];
+	vec->z = vec->x * matrix->m[0][2] + vec->y * matrix->m[1][2] + vec->z * matrix->m[2][2] + matrix->m[3][2];
+	w = vec->x * matrix->m[0][3] + vec->y * matrix->m[1][3] + vec->z * matrix->m[2][3] + matrix->m[3][3];
 	if (w != 0.0f)
 	{
-		o->x /= w;
-		o->y /= w;
-		o->z /= w;
+		vec->x /= w;
+		vec->y /= w;
+		vec->z /= w;
 	}
+}
+
+void	llx_mul_vec3_unique(t_vec3 *i, t_vec3 *o)
+{
+	i->x *= o->x;
+	i->y *= o->y;
+	i->z *= o->z;
+}
+
+void	llx_mul_vec3_number(float f, t_vec3 *o)
+{
+	o->x *= f;
+	o->y *= f;
+	o->z *= f;
 }

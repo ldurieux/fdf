@@ -29,6 +29,12 @@ typedef struct s_point
 	int32_t	y;
 }	t_point;
 
+typedef struct s_size
+{
+	int32_t	width;
+	int32_t	height;
+}	t_size;
+
 typedef struct s_pointF
 {
 	float	x;
@@ -51,6 +57,7 @@ typedef struct s_llx
 	int			(*on_loop)(struct s_llx *llx);
 	void		(*on_exit)(struct s_llx *llx);
 	int			exit_code;
+	void		*data;
 }	t_llx;
 
 t_llx	*llx_init(void);
