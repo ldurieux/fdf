@@ -87,6 +87,46 @@ enum e_mask
 	LlxMsk_OwnerGrabButton		= 0x1000000,
 };
 
+# ifdef __gnu_linux__
+
+enum e_key
+{
+	LlxKey_A = 97,
+	LlxKey_B = 98,
+	LlxKey_C = 99,
+	LlxKey_D = 100,
+	LlxKey_E = 101,
+	LlxKey_F = 102,
+	LlxKey_G = 103,
+	LlxKey_H = 104,
+	LlxKey_I = 105,
+	LlxKey_J = 106,
+	LlxKey_K = 107,
+	LlxKey_L = 108,
+	LlxKey_M = 109,
+	LlxKey_N = 110,
+	LlxKey_O = 111,
+	LlxKey_P = 112,
+	LlxKey_Q = 113,
+	LlxKey_R = 114,
+	LlxKey_S = 115,
+	LlxKey_T = 116,
+	LlxKey_U = 117,
+	LlxKey_V = 118,
+	LlxKey_W = 119,
+	LlxKey_X = 120,
+	LlxKey_Y = 121,
+	LlxKey_Z = 122,
+	LlxKey_Left		= 65361,
+	LlxKey_Up		= 65362,
+	LlxKey_Right	= 65363,
+	LlxKey_Down		= 65364,
+	LlxKey_Plus		= 65451,
+	LlxKey_Minus	= 65453,
+};
+# else
+# endif
+
 typedef struct s_llx_win
 {
 	void	*mlx_win;

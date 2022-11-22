@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_data.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldurieux <ldurieux@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/22 16:29:54 by ldurieux          #+#    #+#             */
+/*   Updated: 2022/11/22 16:29:55 by ldurieux         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static size_t	ft_memcnt(const void *mem, size_t len, char chr)
@@ -10,27 +22,45 @@ static size_t	ft_memcnt(const void *mem, size_t len, char chr)
 	end = str + len;
 	res = 0;
 	while (str < end)
+	{
 		if (*str++ == chr)
+		{
 			res++;
+			while (*str++ == chr)
+				;
+		}
+	}
 	return (res);
 }
 
-static uint8_t	from_hex(char *bytes)
+static t_rgba	color_from_hex(char *data, char **end)
 {
-	uint8_t	res;
+	size_t	read;
+	t_color	color;
+	uint8_t	val;
 
-	if (bytes[0] < 'a')
-		res = (uint8_t)((bytes[0] - '0') << 4);
-	else
-		res = (uint8_t)((bytes[0] - 'a' + 10) << 4);
-	if (bytes[1] < 'a')
-		res += (uint8_t)((bytes[0] - '0'));
-	else
-		res += (uint8_t)((bytes[0] - 'a' + 10));
-	return (res);
+	color.ucolor = 0;
+	read = 0;
+	while (*data
+		&& (*data >= '0' && *data <= '9')
+		|| (*data >= 'a' && *data <= 'f')
+		|| (*data >= 'A' && *data <= 'F'))
+	{
+		val = *data - '0';
+		if (*data >= 'a')
+			val = *data - 'a' + 10;
+		else if (*data >= 'A')
+			val = *data - 'A' + 10;
+		color.ucolor = (color.ucolor << 4) + val;
+		read++;
+		data++;
+	}
+	*end = data;
+	return (color.rgba);
 }
 
-static int	parse_values(char *file, t_vec3 *points, t_color *colors, t_size size)
+static int	parse_values(char *file, t_vec3 *points, t_color *colors,
+					t_size size)
 {
 	size_t	idx;
 	size_t	count;
@@ -43,15 +73,11 @@ static int	parse_values(char *file, t_vec3 *points, t_color *colors, t_size size
 	{
 		points[idx].x = idx / (size_t)size.width;
 		points[idx].z = idx % (size_t)size.width;
-		points[idx].y = ft_strtoll(file, &file);
+		points[idx].y = -ft_strtoll(file, &file);
 		if (*file == ',')
 		{
 			file += 3;
-			c.r = from_hex(file);
-			c.g = from_hex(file + 2);
-			c.b = from_hex(file + 4);
-			colors[idx].rgba = c;
-			file += 6;
+			colors[idx].rgba = color_from_hex(file, &file);
 		}
 		else
 			colors[idx].ucolor = Llx_White;
@@ -59,21 +85,42 @@ static int	parse_values(char *file, t_vec3 *points, t_color *colors, t_size size
 	return (1);
 }
 
-int	parse_data(char *data, t_vec3 **points, t_color **colors, t_size *size)
+static void	center_values(t_vec3 *points, t_size size)
+{
+	size_t	idx;
+	size_t	count;
+
+	idx = (size_t)-1;
+	count = size.width * size.height;
+	while (++idx < count)
+	{
+		points[idx].x -= size.width / 2;
+		points[idx].z -= size.height / 2;
+	}
+}
+
+int	fdf_parse_data(char *data, t_vec3 **points, t_color **colors, t_size *size)
 {
 	size_t	mem_size;
 
+	while (ft_is_whitespace(*data))
+		*data++;
 	mem_size = ft_strlen(data);
 	size->height = (int32_t)ft_memcnt(data, mem_size, '\n');
 	mem_size = (size_t)ft_memchr(data, '\n', mem_size) - (size_t)data;
 	size->width = (int32_t)ft_memcnt(data, mem_size, ' ') + 1;
-	*points = malloc(sizeof(t_vec3) * (size_t)size->width * (size_t)size->height);
-	*colors = malloc(sizeof(t_color) * (size_t)size->width * (size_t)size->height);
+	*points = malloc(sizeof(t_vec3) * (size_t)size->width
+			* (size_t)size->height);
+	*colors = malloc(sizeof(t_color) * (size_t)size->width
+			* (size_t)size->height);
 	if (!*points || !*colors)
 	{
 		free(*points);
 		free(*colors);
 		return (0);
 	}
-	return (parse_values(data, *points, *colors, *size));
+	if (!parse_values(data, *points, *colors, *size))
+		return (0);
+	center_values(*points, *size);
+	return (1);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_file.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldurieux <ldurieux@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/22 16:29:59 by ldurieux          #+#    #+#             */
+/*   Updated: 2022/11/22 16:30:00 by ldurieux         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 #define READ_SIZE	512
@@ -49,7 +61,7 @@ static char	*list_to_buf(t_ftfrwlist *list)
 
 static char	*read_fd(int fd)
 {
-	t_ftfrwlist *list;
+	t_ftfrwlist	*list;
 	char		*buf;
 	int			error;
 
@@ -63,16 +75,14 @@ static char	*read_fd(int fd)
 		if (error)
 		{
 			ft_frwlist_iter(list, free);
-			ft_frwlist_delete(list);
-			return (NULL);
+			return (ft_frwlist_delete(list), NULL);
 		}
 		if (!buf)
 			break ;
 		if (!ft_frwlist_push_back(list, buf))
 		{
 			ft_frwlist_iter(list, free);
-			ft_frwlist_delete(list);
-			return (NULL);
+			return (ft_frwlist_delete(list), NULL);
 		}
 	}
 	return (list_to_buf(list));
@@ -92,7 +102,7 @@ int	fdf_read_file(char *path, t_vec3 **points, t_color **colors, t_size *size)
 	data = read_fd(fd);
 	if (!data)
 		return (0);
-	res = parse_data(data, points, colors, size);
+	res = fdf_parse_data(data, points, colors, size);
 	free(data);
 	return (res);
 }

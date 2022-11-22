@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   llx_3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldurieux <ldurieux@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/22 16:31:12 by ldurieux          #+#    #+#             */
+/*   Updated: 2022/11/22 16:31:15 by ldurieux         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LLX_3D_H
 # define LLX_3D_H
 
@@ -36,7 +48,7 @@ void		llx_project_vec3(t_vec3 *vec, t_vec3 *trans, t_mat4x4 *rot,
 
 t_point		llx_vec3_to_point(t_vec3 *vec, t_size half_view_size);
 
-t_mat4x4	llx_projection_matrix(t_size view_size);
+t_mat4x4	llx_perspective_projection_matrix(t_size view_size);
 t_mat4x4	llx_isometric_projection_matrix(void);
 t_mat4x4	llx_rotation_matrix(float yaw, float pitch, float roll);
 

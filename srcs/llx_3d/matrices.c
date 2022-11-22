@@ -19,7 +19,7 @@
 #define WIDTH 1
 #define HEIGHT 1
 
-t_mat4x4	llx_projection_matrix(t_size view_size)
+t_mat4x4	llx_perspective_projection_matrix(t_size view_size)
 {
 	t_mat4x4	mat;
 	float		fov_rad;
@@ -42,10 +42,10 @@ t_mat4x4	llx_isometric_projection_matrix(void)
 	t_mat4x4	mat;
 
 	ft_memset(mat.m, 0, sizeof(float) * 16);
-	mat.m[0][0] = 2 / WIDTH;
-	mat.m[1][1] = 2 / HEIGHT;
-	mat.m[2][2] = -2 / (FAR - NEAR);
-	mat.m[3][2] = - (FAR + NEAR) / (FAR - NEAR);
+	mat.m[0][0] = 1;
+	mat.m[1][1] = 1;
+	mat.m[2][2] = (FAR - NEAR) / 2;
+	mat.m[3][2] = - (FAR + NEAR) / 2;
 	mat.m[3][3] = 1;
 	return (mat);
 }
@@ -55,7 +55,7 @@ t_mat4x4	llx_rotation_matrix(float yaw, float pitch, float roll)
 	t_mat4x4	mat;
 
 	ft_memset(mat.m, 0, sizeof(float) * 16);
-	/*mat.m[0][0] = cosf(yaw) * cosf(pitch);
+	mat.m[0][0] = cosf(yaw) * cosf(pitch);
 	mat.m[0][1] = sinf(yaw) * cosf(pitch);
 	mat.m[0][2] = -sinf(pitch);
 	mat.m[1][0] = cosf(yaw) * sinf(pitch) * sinf(roll) - sinf(yaw) * cosf(roll);
@@ -63,30 +63,6 @@ t_mat4x4	llx_rotation_matrix(float yaw, float pitch, float roll)
 	mat.m[1][2] = cosf(pitch) * sinf(roll);
 	mat.m[2][0] = cosf(yaw) * sinf(pitch) * cosf(roll) + sinf(yaw) * sinf(roll);
 	mat.m[2][1] = sinf(yaw) * sinf(pitch) * cosf(roll) - cosf(yaw) * sinf(roll);
-	mat.m[2][2] = cosf(pitch) * cosf(roll);*/
-
-	//Rotate Z DOESN'T WORK
-//	mat.m[0][0] = cosf(roll);
-//	mat.m[0][1] = sinf(roll);
-//	mat.m[1][0] = -sinf(roll);
-//	mat.m[1][1] = cosf(roll);
-//	mat.m[2][2] = 1;
-//	mat.m[3][3] = 1;
-
-	//Rotate Y
-//	mat.m[0][0] = cosf(yaw);
-//	mat.m[0][2] = -sinf(yaw);
-//	mat.m[1][1] = 1;
-//	mat.m[2][0] = sinf(yaw);
-//	mat.m[2][2] = cosf(yaw);
-//	mat.m[3][3] = 1;
-
-	//Rotate X
-	mat.m[0][0] = 1;
-	mat.m[1][1] = cosf(pitch);
-	mat.m[1][2] = sinf(pitch);
-	mat.m[2][1] = -sinf(pitch);
-	mat.m[2][2] = cosf(pitch);
-	mat.m[3][3] = 1;
+	mat.m[2][2] = cosf(pitch) * cosf(roll);
 	return (mat);
 }
