@@ -25,7 +25,6 @@ SRCS		= \
 			  srcs/llx_3d/add_vec3.c \
 			  srcs/llx_3d/matrices.c \
 			  srcs/llx_3d/mul_vec3_mat4x4.c \
-			  srcs/llx_3d/vec3_to_point.c \
 			  srcs/fdf/read_file.c \
 			  srcs/fdf/parse_data.c \
 			  srcs/fdf/flags.c \

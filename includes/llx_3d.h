@@ -43,8 +43,6 @@ void		llx_mul_vec3_unique(t_vec3 *i, t_vec3 *o);
 void		llx_mul_vec3_number(float f, t_vec3 *o);
 void		llx_add_vec3(t_vec3 *i, t_vec3 *o);
 
-t_point		llx_vec3_to_point(t_vec3 *vec, t_size half_view_size);
-
 t_mat4x4	llx_perspective_projection_matrix(t_size view_size);
 t_mat4x4	llx_isometric_projection_matrix(void);
 t_mat4x4	llx_rotation_matrix(float yaw, float pitch, float roll);
