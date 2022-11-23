@@ -125,6 +125,16 @@ enum e_key
 	LlxKey_Down		= 65364,
 	LlxKey_Plus		= 65451,
 	LlxKey_Minus	= 65453,
+	LlxKey_0 = 224,
+	LlxKey_1 = 38,
+	LlxKey_2 = 233,
+	LlxKey_3 = 34,
+	LlxKey_4 = 39,
+	LlxKey_5 = 40,
+	LlxKey_6 = 45,
+	LlxKey_7 = 232,
+	LlxKey_8 = 95,
+	LlxKey_9 = 231,
 };
 # else
 # endif

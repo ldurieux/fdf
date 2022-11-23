@@ -33,6 +33,7 @@ SRCS		= \
 			  srcs/fdf/scale.c \
 			  srcs/fdf/on_loop.c \
 			  srcs/fdf/on_key_down.c \
+			  srcs/fdf/load_preset.c \
 
 HEADERS		= \
 			  includes \

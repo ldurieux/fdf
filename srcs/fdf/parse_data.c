@@ -71,9 +71,9 @@ static int	parse_values(char *file, t_vec3 *points, t_color *colors,
 	c.a = 0;
 	while (++idx < count)
 	{
-		points[idx].x = idx / (size_t)size.width;
-		points[idx].z = idx % (size_t)size.width;
-		points[idx].y = -ft_strtoll(file, &file);
+		points[idx].z = idx / (size_t)size.width;
+		points[idx].x = idx % (size_t)size.width;
+		points[idx].y = ft_strtoll(file, &file);
 		if (*file == ',')
 		{
 			file += 3;

@@ -12,11 +12,39 @@
 
 #include "fdf.h"
 
+static void	preset_keys(t_fdf *fdf, int key)
+{
+	if (key == LlxKey_0)
+		fdf_load_preset(fdf, 0);
+	if (key == LlxKey_1)
+		fdf_load_preset(fdf, 1);
+	if (key == LlxKey_2)
+		fdf_load_preset(fdf, 2);
+	if (key == LlxKey_3)
+		fdf_load_preset(fdf, 3);
+	if (key == LlxKey_4)
+		fdf_load_preset(fdf, 4);
+	if (key == LlxKey_5)
+		fdf_load_preset(fdf, 5);
+	if (key == LlxKey_6)
+		fdf_load_preset(fdf, 6);
+	if (key == LlxKey_7)
+		ft_printf("scale (%d, %d, %d)\n", (int)(fdf->scale.x * 1000),
+			(int)(fdf->scale.y * 1000), (int)(fdf->scale.z * 1000));
+	if (key == LlxKey_8)
+		ft_printf("translate (%d, %d, %d)\n", (int)(fdf->trans.x * 1000),
+			(int)(fdf->trans.y * 1000), (int)(fdf->trans.z * 1000));
+	if (key == LlxKey_9)
+		ft_printf("rotate (%d, %d, %d)\n", (int)(fdf->rot.x * 1000),
+			(int)(fdf->rot.y * 1000), (int)(fdf->rot.z * 1000));
+}
+
 void	fdf_on_key_down(t_llx_win *win, int key)
 {
 	t_fdf	*fdf;
 
 	fdf = win->llx->data;
+	preset_keys(fdf, key);
 	if (key == LlxKey_P)
 		fdf_switch_projection(fdf);
 	else if (key == LlxKey_M)

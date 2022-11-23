@@ -35,21 +35,17 @@ static int	start_llx(t_fdf *fdf)
 int	main(void)
 {
 	t_fdf	fdf;
-	float	ratio;
-	char	*path = "/mnt/data/home/loudur/project/42/llx2/test_maps/elem2.fdf";
+	char	*path = "/mnt/data/home/loudur/project/42/llx2/test_maps/elem-fract.fdf";
 
 	if (!fdf_read_file(path, &fdf.orig_points, &fdf.colors, &fdf.map_size))
 		return (1);
-	ratio = fdf.map_size.width;
-	if (ratio < fdf.map_size.height)
-		ratio = fdf.map_size.height;
 	fdf.points = NULL;
 	fdf.win_size = (t_size){480, 480};
-	fdf.rot = (t_vec3){M_PI / 3, 0.5f, M_PI / 5};
 	fdf.trans = (t_vec3){0.0f, 0.0f, 1.0f};
-	fdf.scale = (t_vec3){1 / ratio, 1 / ratio, 1 / ratio};
 	fdf.proj_matrix = llx_isometric_projection_matrix();
 	fdf.flags = 0;
+	fdf_load_preset(&fdf, 1);
+	fdf_scale_to_fit(&fdf);
 	fdf_scale_points(&fdf);
 	return (start_llx(&fdf));
 }

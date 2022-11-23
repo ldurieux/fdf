@@ -47,3 +47,35 @@ void	fdf_scale(t_fdf *fdf, float value)
 	fdf->scale.y *= value;
 	fdf_scale_points(fdf);
 }
+
+static float	ft_absf(float val)
+{
+	if (val < 0)
+		return (-val);
+	return (val);
+}
+
+static float	find_highest(t_vec3 *pts, t_size map_size)
+{
+	size_t	idx;
+	size_t	end;
+	float	res;
+
+	idx = (size_t)-1;
+	end = map_size.width * map_size.height;
+	res = 0.0f;
+	while (++idx < end)
+		if (ft_absf(pts[idx].y) > res)
+			res = ft_absf(pts[idx].y);
+	return (res);
+}
+
+void	fdf_scale_to_fit(t_fdf *fdf)
+{
+	float	section_scale;
+	float	highest;
+
+	section_scale = fdf->map_size.width;
+	highest = find_highest(fdf->orig_points, fdf->map_size);
+	fdf->scale = (t_vec3){1 / section_scale, 1 / highest, 1 / section_scale};
+}

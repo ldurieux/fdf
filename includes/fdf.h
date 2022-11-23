@@ -53,5 +53,8 @@ void	fdf_switch_scale_mode(t_fdf *fdf);
 
 void	fdf_scale(t_fdf *fdf, float value);
 void	fdf_scale_points(t_fdf *fdf);
+void	fdf_scale_to_fit(t_fdf *fdf);
+
+void	fdf_load_preset(t_fdf *fdf, int preset);
 
 #endif // FDF_H
