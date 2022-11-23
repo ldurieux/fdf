@@ -30,3 +30,8 @@ void	fdf_switch_draw_mode(t_fdf *fdf)
 {
 	fdf->flags ^= Fdf_points_only;
 }
+
+void	fdf_switch_color_mode(t_fdf *fdf)
+{
+	fdf->flags ^= Fdf_no_colors;
+}

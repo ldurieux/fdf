@@ -43,12 +43,15 @@ static void	draw_fdf_points(t_llx_paint *paint, register t_point *pts,
 	end = pts + count;
 	while (pts != end)
 	{
-		if (pts->x >= 0 && pts->y >= 0
-			&& pts->x < bounds.width
+		if (pts->x >= 0 && pts->y >= 0 && pts->x < bounds.width
 			&& pts->y < bounds.height)
-			img_ptr[pts->y * line_size + pts->x] = cols->ucolor;
+		{
+			img_ptr[pts->y * line_size + pts->x] = Llx_White;
+			if (cols)
+				img_ptr[pts->y * line_size + pts->x] = cols->ucolor;
+		}
 		pts++;
-		cols++;
+		cols += (cols != 0);
 	}
 }
 
@@ -63,13 +66,16 @@ static void	draw_fdf_lines(t_llx_paint *paint, register t_point *pts,
 	idx = 0;
 	colors = fdf->colors;
 	map_size = fdf->map_size;
-	end = pts + (count - map_size.width);
+	end = pts + count;
+	paint->pen.ucolor = Llx_White;
 	while (pts != end)
 	{
-		paint->pen = *colors;
+		if ((fdf->flags & Fdf_no_colors) == 0)
+			paint->pen = *colors;
 		if (idx % map_size.width < (size_t)map_size.width - 1)
 			llx_paint_line(paint, *pts, *(pts + 1));
-		llx_paint_line(paint, *pts, *(pts + map_size.width));
+		if (idx / map_size.width < (size_t)map_size.height - 1)
+			llx_paint_line(paint, *pts, *(pts + map_size.width));
 		pts++;
 		colors++;
 		idx++;
@@ -82,9 +88,14 @@ static void	draw_fdf(t_llx_paint *paint, t_fdf *fdf, t_point *points)
 	t_size	map_size;
 
 	map_size = fdf->map_size;
-	count = map_size.width * map_size.height;
+	count = (size_t)map_size.width * (size_t)map_size.height;
 	if (fdf->flags & Fdf_points_only)
-		draw_fdf_points(paint, points, fdf->colors, count);
+	{
+		if ((fdf->flags & Fdf_no_colors) == 0)
+			draw_fdf_points(paint, points, fdf->colors, count);
+		else
+			draw_fdf_points(paint, points, NULL, count);
+	}
 	else
 		draw_fdf_lines(paint, points, count, fdf);
 }

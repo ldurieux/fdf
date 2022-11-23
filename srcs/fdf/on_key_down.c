@@ -51,6 +51,8 @@ void	fdf_on_key_down(t_llx_win *win, int key)
 		fdf_switch_scale_mode(fdf);
 	else if (key == LlxKey_O)
 		fdf_switch_draw_mode(fdf);
+	else if (key == LlxKey_C)
+		fdf_switch_color_mode(fdf);
 }
 
 void	fdf_while_key_down(t_llx_win *win, t_fdf *fdf)

@@ -25,6 +25,7 @@ enum e_fdf_flags
 	Fdf_perspective_projection = 0x1,
 	Fdf_scale_section = 0x2,
 	Fdf_points_only = 0x4,
+	Fdf_no_colors = 0x8,
 };
 
 typedef struct s_fdf
@@ -55,6 +56,7 @@ int		fdf_parse_data(char *data, t_vec3 **points, t_color **colors,
 void	fdf_switch_projection(t_fdf *fdf);
 void	fdf_switch_scale_mode(t_fdf *fdf);
 void	fdf_switch_draw_mode(t_fdf *fdf);
+void	fdf_switch_color_mode(t_fdf *fdf);
 
 void	fdf_scale(t_fdf *fdf, float value);
 void	fdf_scale_points(t_fdf *fdf);

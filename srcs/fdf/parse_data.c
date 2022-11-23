@@ -43,8 +43,8 @@ static t_rgba	color_from_hex(char *data, char **end)
 	read = 0;
 	while (*data
 		&& ((*data >= '0' && *data <= '9')
-		|| (*data >= 'a' && *data <= 'f')
-		|| (*data >= 'A' && *data <= 'F')))
+			|| (*data >= 'a' && *data <= 'f')
+			|| (*data >= 'A' && *data <= 'F')))
 	{
 		val = *data - '0';
 		if (*data >= 'a')
