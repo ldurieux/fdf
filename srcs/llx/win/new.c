@@ -20,21 +20,21 @@ static void	connect_win(t_llx_win *w)
 
 	m = w->mlx_win;
 	mlx_hook(m, LlxEvt_KeyPress, LlxMsk_KeyPress,
-		(int (*)()) llx_on_key_down, w);
+		(void *) llx_on_key_down, w);
 	mlx_hook(m, LlxEvt_KeyRelease, LlxMsk_KeyRelease,
-		(int (*)()) llx_on_key_up, w);
+		(void *) llx_on_key_up, w);
 	mlx_hook(m, LlxEvt_ButtonPress, LlxMsk_ButtonPress,
-		(int (*)()) llx_on_mouse_down, w);
+		(void *) llx_on_mouse_down, w);
 	mlx_hook(m, LlxEvt_ButtonRelease, LlxMsk_ButtonRelease,
-		(int (*)()) llx_on_mouse_up, w);
+		(void *) llx_on_mouse_up, w);
 	mlx_hook(m, LlxEvt_MotionNotify, LlxMsk_NoEvent,
-		(int (*)()) llx_on_mouse_move, w);
+		(void *) llx_on_mouse_move, w);
 	mlx_hook(m, LlxEvt_EnterNotify, LlxMsk_EnterWindow,
-		(int (*)()) llx_on_enter, w);
+		(void *) llx_on_enter, w);
 	mlx_hook(m, LlxEvt_LeaveNotify, LlxMsk_LeaveWindow,
-		(int (*)()) llx_on_leave, w);
+		(void *) llx_on_leave, w);
 	mlx_hook(m, LlxEvt_DestroyNotify, LlxMsk_NoEvent,
-		(int (*)()) llx_on_close, w);
+		(void *) llx_on_close, w);
 }
 
 #define MIN_WIDTH 10

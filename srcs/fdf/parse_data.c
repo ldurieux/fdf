@@ -42,9 +42,9 @@ static t_rgba	color_from_hex(char *data, char **end)
 	color.ucolor = 0;
 	read = 0;
 	while (*data
-		&& (*data >= '0' && *data <= '9')
+		&& ((*data >= '0' && *data <= '9')
 		|| (*data >= 'a' && *data <= 'f')
-		|| (*data >= 'A' && *data <= 'F'))
+		|| (*data >= 'A' && *data <= 'F')))
 	{
 		val = *data - '0';
 		if (*data >= 'a')
@@ -64,16 +64,14 @@ static int	parse_values(char *file, t_vec3 *points, t_color *colors,
 {
 	size_t	idx;
 	size_t	count;
-	t_rgba	c;
 
 	idx = (size_t)-1;
 	count = (size_t)size.width * (size_t)size.height;
-	c.a = 0;
 	while (++idx < count)
 	{
-		points[idx].z = idx / (size_t)size.width;
-		points[idx].x = idx % (size_t)size.width;
-		points[idx].y = ft_strtoll(file, &file);
+		points[idx].z = (float)(idx / (size_t)size.width);
+		points[idx].x = (float)(idx % (size_t)size.width);
+		points[idx].y = (float)ft_strtoll(file, &file);
 		if (*file == ',')
 		{
 			file += 3;
@@ -91,7 +89,7 @@ static void	center_values(t_vec3 *points, t_size size)
 	size_t	count;
 
 	idx = (size_t)-1;
-	count = size.width * size.height;
+	count = (size_t)size.width * (size_t)size.height;
 	while (++idx < count)
 	{
 		points[idx].x -= size.width / 2;
@@ -104,7 +102,7 @@ int	fdf_parse_data(char *data, t_vec3 **points, t_color **colors, t_size *size)
 	size_t	mem_size;
 
 	while (ft_is_whitespace(*data))
-		*data++;
+		data++;
 	mem_size = ft_strlen(data);
 	size->height = (int32_t)ft_memcnt(data, mem_size, '\n');
 	mem_size = (size_t)ft_memchr(data, '\n', mem_size) - (size_t)data;

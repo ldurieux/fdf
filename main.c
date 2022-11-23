@@ -32,12 +32,13 @@ static int	start_llx(t_fdf *fdf)
 	return (llx_exec(llx));
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_fdf	fdf;
-	char	*path = "/mnt/data/home/loudur/project/42/llx2/test_maps/elem-fract.fdf";
 
-	if (!fdf_read_file(path, &fdf.orig_points, &fdf.colors, &fdf.map_size))
+	if (argc < 2)
+		return (ft_printf("No file specified\n"), 1);
+	if (!fdf_read_file(argv[1], &fdf.orig_points, &fdf.colors, &fdf.map_size))
 		return (1);
 	fdf.points = NULL;
 	fdf.win_size = (t_size){480, 480};

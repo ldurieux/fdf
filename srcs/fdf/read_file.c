@@ -98,7 +98,7 @@ int	fdf_read_file(char *path, t_vec3 **points, t_color **colors, t_size *size)
 		return (0);
 	fd = open(path, O_RDONLY);
 	if (read(fd, NULL, 0) != 0)
-		return (0);
+		return (ft_printf("Couldn't read file %s\n", path), 0);
 	data = read_fd(fd);
 	if (!data)
 		return (0);

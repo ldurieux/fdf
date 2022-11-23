@@ -45,7 +45,7 @@ static t_bresenham_inter	get_next_point(t_bresenham_inter d)
 		d.error += d.delta.y * (d.e2 >= d.delta.y) + d.delta.x
 			* (d.e2 <= d.delta.x);
 		d.p1.x += d.slope.x * (d.e2 >= d.delta.y);
-		if (d.slope.y * (d.e2 <= d.delta.x))
+		if (d.slope.y && (d.e2 <= d.delta.x))
 		{
 			d.p1.y += d.slope.y;
 			return (d);

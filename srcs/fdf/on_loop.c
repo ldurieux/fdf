@@ -67,7 +67,7 @@ static void	draw_fdf_lines(t_llx_paint *paint, register t_point *pts,
 	while (pts != end)
 	{
 		paint->pen = *colors;
-		if (idx % map_size.width < map_size.width - 1)
+		if (idx % map_size.width < (size_t)map_size.width - 1)
 			llx_paint_line(paint, *pts, *(pts + 1));
 		llx_paint_line(paint, *pts, *(pts + map_size.width));
 		pts++;
@@ -78,7 +78,6 @@ static void	draw_fdf_lines(t_llx_paint *paint, register t_point *pts,
 
 static void	draw_fdf(t_llx_paint *paint, t_fdf *fdf, t_point *points)
 {
-	size_t	idx;
 	size_t	count;
 	t_size	map_size;
 

@@ -69,7 +69,7 @@ BUILDDIR	= build
 OBJS		= $(SRCS:%.c=$(BUILDDIR)/%.o) $(ASMSRCS:%.s=$(BUILDDIR)/%.o)
 DEPS		= $(SRCS:%.c=$(BUILDDIR)/%.d)
 CC			= cc
-CCWFLGS		= -Wall -Wextra
+CCWFLGS		= -Wall -Wextra -Werror
 CCDBGFLGS	= -g3
 CCO1FLGS	= -O1 -march=native
 CCO2FLGS	= -O2 -march=native
