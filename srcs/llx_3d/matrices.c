@@ -26,8 +26,8 @@ t_mat4x4	llx_perspective_projection_matrix(t_size view_size)
 	float		aspect_ratio;
 
 	aspect_ratio = (float)view_size.height / (float)view_size.width;
-	ft_memset(mat.m, 0, sizeof(float) * 16);
 	fov_rad = 1.0f / tanf(FOV * 0.5f / 180.0f * (float)M_PI);
+	ft_memset(mat.m, 0, sizeof(float) * 16);
 	mat.m[0][0] = aspect_ratio * fov_rad;
 	mat.m[1][1] = fov_rad;
 	mat.m[2][2] = FAR / (FAR - NEAR);
@@ -37,13 +37,17 @@ t_mat4x4	llx_perspective_projection_matrix(t_size view_size)
 	return (mat);
 }
 
-t_mat4x4	llx_isometric_projection_matrix(void)
+t_mat4x4	llx_isometric_projection_matrix(t_size view_size)
 {
 	t_mat4x4	mat;
+	float		fov_rad;
+	float		aspect_ratio;
 
+	aspect_ratio = (float)view_size.height / (float)view_size.width;
+	fov_rad = 1.0f / tanf(FOV * 0.5f / 180.0f * (float)M_PI);
 	ft_memset(mat.m, 0, sizeof(float) * 16);
-	mat.m[0][0] = 1;
-	mat.m[1][1] = 1;
+	mat.m[0][0] = aspect_ratio * fov_rad;
+	mat.m[1][1] = fov_rad;
 	mat.m[2][2] = (FAR - NEAR) / 2;
 	mat.m[3][2] = - (FAR + NEAR) / 2;
 	mat.m[3][3] = 1;

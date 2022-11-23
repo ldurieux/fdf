@@ -18,7 +18,7 @@ void	fdf_switch_projection(t_fdf *fdf)
 	if (fdf->flags & Fdf_perspective_projection)
 		fdf->proj_matrix = llx_perspective_projection_matrix(fdf->win_size);
 	else
-		fdf->proj_matrix = llx_isometric_projection_matrix();
+		fdf->proj_matrix = llx_isometric_projection_matrix(fdf->win_size);
 }
 
 void	fdf_switch_scale_mode(t_fdf *fdf)

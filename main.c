@@ -17,6 +17,9 @@
 
 #include "ft_printf.h"
 
+#define WIDTH	1366
+#define HEIGHT	768
+
 static int	start_llx(t_fdf *fdf)
 {
 	t_llx		*llx;
@@ -41,9 +44,9 @@ int	main(int argc, char **argv)
 	if (!fdf_read_file(argv[1], &fdf.orig_points, &fdf.colors, &fdf.map_size))
 		return (1);
 	fdf.points = NULL;
-	fdf.win_size = (t_size){480, 480};
+	fdf.win_size = (t_size){WIDTH, HEIGHT};
 	fdf.trans = (t_vec3){0.0f, 0.0f, 1.0f};
-	fdf.proj_matrix = llx_isometric_projection_matrix();
+	fdf.proj_matrix = llx_isometric_projection_matrix(fdf.win_size);
 	fdf.flags = 0;
 	fdf_load_preset(&fdf, 1);
 	fdf_scale_to_fit(&fdf);
