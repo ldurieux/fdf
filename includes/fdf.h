@@ -41,6 +41,7 @@ typedef struct s_fdf
 
 int		fdf_on_loop(t_llx *llx);
 void	fdf_on_key_down(t_llx_win *win, int key);
+void	fdf_while_key_down(t_llx_win *win, t_fdf *fdf);
 
 int		fdf_read_file(char *path, t_vec3 **points, t_color **colors,
 			t_size *size);

@@ -16,6 +16,8 @@
 # include <stdint.h>
 # include "libft.h"
 
+# define MAX_KEY_IDX 127
+
 typedef struct s_llx	t_llx;
 
 enum e_event
@@ -134,6 +136,8 @@ typedef struct s_llx_win
 	uint8_t	id;
 	int		width;
 	int		height;
+	int		last_key_idx;
+	int		keys[128];
 	void	*cache;
 	void	(*on_key_down)(struct s_llx_win *win, int keycode);
 	void	(*on_key_up)(struct s_llx_win *win, int keycode);
@@ -147,5 +151,6 @@ typedef struct s_llx_win
 
 t_llx_win	*llx_win_new(t_llx *llx, int width, int height, char *title);
 void		llx_win_delete(t_llx_win *win);
+int			llx_win_is_key_down(t_llx_win *win, int key);
 
 #endif // LLX_WIN_H

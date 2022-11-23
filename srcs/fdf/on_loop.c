@@ -76,6 +76,7 @@ int	fdf_on_loop(t_llx *llx)
 	t_llx_paint	paint;
 	t_point		*points;
 
+	fdf_while_key_down(llx->windows[0], llx->data);
 	setup_paint(llx, &paint, llx->data);
 	if (!project_points(llx->data, &points))
 		return (0);

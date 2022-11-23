@@ -9,6 +9,7 @@ SRCS		= \
 			  srcs/llx/on_loop.c \
 			  srcs/llx/win/new.c \
 			  srcs/llx/win/delete.c \
+			  srcs/llx/win/is_key_down.c \
 			  srcs/llx/win/event_handler_1.c \
 			  srcs/llx/win/event_handler_2.c \
 			  srcs/llx_paint/draw_tri.c \

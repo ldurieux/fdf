@@ -26,4 +26,6 @@ void	llx_on_enter(t_llx_win *ptr);
 void	llx_on_leave(t_llx_win *ptr);
 void	llx_on_close(t_llx_win *ptr);
 
+int		llx_win_key_down_idx(t_llx_win *win, int key);
+
 #endif // LLX_WIN_INTERNAL_H

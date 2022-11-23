@@ -15,12 +15,26 @@
 
 void	llx_on_key_down(int keycode, t_llx_win *ptr)
 {
+	if (ptr->last_key_idx < MAX_KEY_IDX
+		&& !llx_win_is_key_down(ptr, keycode))
+	{
+		ptr->last_key_idx++;
+		ptr->keys[ptr->last_key_idx] = keycode;
+	}
 	if (ptr->on_key_down)
 		ptr->on_key_down(ptr, keycode);
 }
 
 void	llx_on_key_up(int keycode, t_llx_win *ptr)
 {
+	int	key_idx;
+
+	key_idx = llx_win_key_down_idx(ptr, keycode);
+	if (key_idx != -1)
+	{
+		ptr->keys[key_idx] = ptr->keys[ptr->last_key_idx];
+		ptr->last_key_idx--;
+	}
 	if (ptr->on_key_up)
 		ptr->on_key_up(ptr, keycode);
 }

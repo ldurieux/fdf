@@ -55,6 +55,7 @@ t_llx_win	*llx_win_new(t_llx *llx, int width, int height, char *title)
 	win->id = llx->last_win_id;
 	win->width = width;
 	win->height = height;
+	win->last_key_idx = -1;
 	win->cache = mlx_new_image(llx->mlx, width, height);
 	win->mlx_win = mlx_new_window(llx->mlx, width, height, title);
 	if (!win->mlx_win || !win->cache)
