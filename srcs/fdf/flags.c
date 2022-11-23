@@ -25,3 +25,8 @@ void	fdf_switch_scale_mode(t_fdf *fdf)
 {
 	fdf->flags ^= Fdf_scale_section;
 }
+
+void	fdf_switch_draw_mode(t_fdf *fdf)
+{
+	fdf->flags ^= Fdf_points_only;
+}

@@ -15,10 +15,10 @@
 
 void	llx_paint_fill(t_llx_paint *paint)
 {
-	uint32_t	*ptr;
-	uint32_t	*end;
-	uint32_t	color;
-	t_img_data	data;
+	register uint32_t	*ptr;
+	register uint32_t	*end;
+	register uint32_t	color;
+	t_img_data			data;
 
 	if (!paint)
 		return ;

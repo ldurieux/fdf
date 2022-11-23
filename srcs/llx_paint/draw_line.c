@@ -47,13 +47,22 @@ static void	draw_bresenham_line(t_llx_paint *paint, t_point p1, t_point p2,
 static void	draw_simple_line(t_llx_paint *paint, t_point p1, t_point p2,
 						t_point delta)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	int32_t	swap;
 
 	if (p1.x > p2.x)
-		ft_swap(&p1.x, &p2.x, sizeof(int));
+	{
+		swap = p1.x;
+		p1.x = p2.x;
+		p2.x = swap;
+	}
 	if (p1.y > p2.y)
-		ft_swap(&p1.y, &p2.y, sizeof(int));
+	{
+		swap = p1.y;
+		p1.y = p2.y;
+		p2.y = swap;
+	}
 	y = p1.y;
 	x = p1.x;
 	if (delta.x == 0)

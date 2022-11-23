@@ -38,13 +38,10 @@ typedef struct s_transform_3d
 	t_vec3	scale;
 }	t_transform_3d;
 
-void		llx_mul_vec3_mat4x4(t_mat4x4 *m, t_vec3 *o);
+void		llx_mul_vec3_mat4x4(t_vec3 *out, t_vec3 in, t_mat4x4 *mat);
 void		llx_mul_vec3_unique(t_vec3 *i, t_vec3 *o);
 void		llx_mul_vec3_number(float f, t_vec3 *o);
 void		llx_add_vec3(t_vec3 *i, t_vec3 *o);
-
-void		llx_project_vec3(t_vec3 *vec, t_vec3 *trans, t_mat4x4 *rot,
-				t_mat4x4 *proj);
 
 t_point		llx_vec3_to_point(t_vec3 *vec, t_size half_view_size);
 

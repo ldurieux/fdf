@@ -25,7 +25,6 @@ SRCS		= \
 			  srcs/llx_3d/add_vec3.c \
 			  srcs/llx_3d/matrices.c \
 			  srcs/llx_3d/mul_vec3_mat4x4.c \
-			  srcs/llx_3d/project_vec3.c \
 			  srcs/llx_3d/vec3_to_point.c \
 			  srcs/fdf/read_file.c \
 			  srcs/fdf/parse_data.c \
@@ -34,6 +33,7 @@ SRCS		= \
 			  srcs/fdf/on_loop.c \
 			  srcs/fdf/on_key_down.c \
 			  srcs/fdf/load_preset.c \
+			  srcs/fdf/project_points.c \
 
 HEADERS		= \
 			  includes \

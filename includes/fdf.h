@@ -23,6 +23,7 @@ enum e_fdf_flags
 {
 	Fdf_perspective_projection = 0x1,
 	Fdf_scale_section = 0x2,
+	Fdf_points_only = 0x4,
 };
 
 typedef struct s_fdf
@@ -43,6 +44,8 @@ int		fdf_on_loop(t_llx *llx);
 void	fdf_on_key_down(t_llx_win *win, int key);
 void	fdf_while_key_down(t_llx_win *win, t_fdf *fdf);
 
+int		fdf_project_points(t_fdf *fdf, t_point **points);
+
 int		fdf_read_file(char *path, t_vec3 **points, t_color **colors,
 			t_size *size);
 int		fdf_parse_data(char *data, t_vec3 **points, t_color **colors,
@@ -50,6 +53,7 @@ int		fdf_parse_data(char *data, t_vec3 **points, t_color **colors,
 
 void	fdf_switch_projection(t_fdf *fdf);
 void	fdf_switch_scale_mode(t_fdf *fdf);
+void	fdf_switch_draw_mode(t_fdf *fdf);
 
 void	fdf_scale(t_fdf *fdf, float value);
 void	fdf_scale_points(t_fdf *fdf);

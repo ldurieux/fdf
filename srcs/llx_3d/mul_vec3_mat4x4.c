@@ -12,26 +12,24 @@
 
 #include "llx_3d.h"
 
-void	llx_mul_vec3_mat4x4(t_mat4x4 *matrix, t_vec3 *vec)
+void	llx_mul_vec3_mat4x4(t_vec3 *out, t_vec3 in, t_mat4x4 *mat)
 {
 	float	w;
-	t_vec3	res;
 
-	res.x = vec->x * matrix->m[0][0] + vec->y * matrix->m[1][0]
-		+ vec->z * matrix->m[2][0] + matrix->m[3][0];
-	res.y = vec->x * matrix->m[0][1] + vec->y * matrix->m[1][1]
-		+ vec->z * matrix->m[2][1] + matrix->m[3][1];
-	res.z = vec->x * matrix->m[0][2] + vec->y * matrix->m[1][2]
-		+ vec->z * matrix->m[2][2] + matrix->m[3][2];
-	w = vec->x * matrix->m[0][3] + vec->y * matrix->m[1][3]
-		+ vec->z * matrix->m[2][3] + matrix->m[3][3];
+	out->x = in.x * mat->m[0][0] + in.y * mat->m[1][0]
+		+ in.z * mat->m[2][0] + mat->m[3][0];
+	out->y = in.x * mat->m[0][1] + in.y * mat->m[1][1]
+		+ in.z * mat->m[2][1] + mat->m[3][1];
+	out->z = in.x * mat->m[0][2] + in.y * mat->m[1][2]
+		+ in.z * mat->m[2][2] + mat->m[3][2];
+	w = in.x * mat->m[0][3] + in.y * mat->m[1][3]
+		+ in.z * mat->m[2][3] + mat->m[3][3];
 	if (w != 0.0f)
 	{
-		res.x /= w;
-		res.y /= w;
-		res.z /= w;
+		out->x /= w;
+		out->y /= w;
+		out->z /= w;
 	}
-	ft_memcpy(vec, &res, sizeof(t_vec3));
 }
 
 void	llx_mul_vec3_unique(t_vec3 *i, t_vec3 *o)
