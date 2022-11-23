@@ -13,16 +13,14 @@
 #include "fdf.h"
 
 static void	matrix_mult(register t_vec3 *res, t_vec3 *pts, size_t count,
-						t_mat4x4 *mat_ref)
+						register t_mat4x4 mat)
 {
 	register t_vec3		*end;
 	register t_vec3		pt;
-	register t_mat4x4	mat;
 	register float		w;
 
-	mat = *mat_ref;
-	end = res + count - 1;
-	while (++res != end)
+	end = res + count;
+	while (res != end)
 	{
 		pt = *pts++;
 		res->x = pt.x * mat.m[0][0] + pt.y * mat.m[1][0]
@@ -39,6 +37,7 @@ static void	matrix_mult(register t_vec3 *res, t_vec3 *pts, size_t count,
 			res->y /= w;
 			res->z /= w;
 		}
+		res++;
 	}
 }
 
@@ -93,9 +92,9 @@ int	fdf_project_points(t_fdf *fdf, t_point **points)
 	*points = malloc(sizeof(t_point) * count);
 	if (!*points || !projected)
 		return (free(points), free(projected), 0);
-	matrix_mult(projected, fdf->points, count, &mat_rot);
+	matrix_mult(projected, fdf->points, count, mat_rot);
 	vec3_add(projected, &fdf->trans, count);
-	matrix_mult(projected, projected, count, &fdf->proj_matrix);
+	matrix_mult(projected, projected, count, fdf->proj_matrix);
 	to_point(*points, projected, count, &half_win_size);
 	return (free(projected), 1);
 }

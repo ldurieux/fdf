@@ -84,7 +84,6 @@ static void	draw_fdf(t_llx_paint *paint, t_fdf *fdf, t_point *points)
 
 	map_size = fdf->map_size;
 	count = map_size.width * map_size.height;
-	idx = (size_t)-1;
 	if (fdf->flags & Fdf_points_only)
 		draw_fdf_points(paint, points, fdf->colors, count);
 	else
