@@ -62,18 +62,18 @@ void	fdf_while_key_down(t_llx_win *win, t_fdf *fdf)
 
 	rot = &fdf->rot;
 	trans = &fdf->trans;
-	rot->x -= 0.002f * (float)llx_win_is_key_down(win, LlxKey_Z);
-	rot->x += 0.002f * (float)llx_win_is_key_down(win, LlxKey_S);
-	rot->y += 0.002f * (float)llx_win_is_key_down(win, LlxKey_Q);
-	rot->y -= 0.002f * (float)llx_win_is_key_down(win, LlxKey_D);
-	rot->z += 0.002f * (float)llx_win_is_key_down(win, LlxKey_E);
-	rot->z -= 0.002f * (float)llx_win_is_key_down(win, LlxKey_A);
-	trans->x += 0.002f * (float)llx_win_is_key_down(win, LlxKey_Right);
-	trans->x -= 0.002f * (float)llx_win_is_key_down(win, LlxKey_Left);
-	trans->y -= 0.002f * (float)llx_win_is_key_down(win, LlxKey_Up);
-	trans->y += 0.002f * (float)llx_win_is_key_down(win, LlxKey_Down);
+	rot->x -= 0.01f * (float)llx_win_is_key_down(win, LlxKey_W);
+	rot->x += 0.01f * (float)llx_win_is_key_down(win, LlxKey_S);
+	rot->y += 0.01f * (float)llx_win_is_key_down(win, LlxKey_A);
+	rot->y -= 0.01f * (float)llx_win_is_key_down(win, LlxKey_D);
+	rot->z += 0.01f * (float)llx_win_is_key_down(win, LlxKey_E);
+	rot->z -= 0.01f * (float)llx_win_is_key_down(win, LlxKey_Q);
+	trans->x += 0.01f * (float)llx_win_is_key_down(win, LlxKey_Right);
+	trans->x -= 0.01f * (float)llx_win_is_key_down(win, LlxKey_Left);
+	trans->y -= 0.01f * (float)llx_win_is_key_down(win, LlxKey_Up);
+	trans->y += 0.01f * (float)llx_win_is_key_down(win, LlxKey_Down);
 	if (llx_win_is_key_down(win, LlxKey_Plus))
-		fdf_scale(fdf, 1.002f);
+		fdf_scale(fdf, 1.01f);
 	if (llx_win_is_key_down(win, LlxKey_Minus))
-		fdf_scale(fdf, 0.998f);
+		fdf_scale(fdf, 0.99f);
 }

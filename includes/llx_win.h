@@ -137,6 +137,53 @@ enum e_key
 	LlxKey_9 = 231,
 };
 # else
+
+enum e_key
+{
+	LlxKey_A = 0,
+	LlxKey_B = 11,
+	LlxKey_C = 8,
+	LlxKey_D = 2,
+	LlxKey_E = 14,
+	LlxKey_F = 3,
+	LlxKey_G = 5,
+	LlxKey_H = 4,
+	LlxKey_I = 34,
+	LlxKey_J = 38,
+	LlxKey_K = 40,
+	LlxKey_L = 37,
+	LlxKey_M = 46,
+	LlxKey_N = 45,
+	LlxKey_O = 31,
+	LlxKey_P = 35,
+	LlxKey_Q = 12,
+	LlxKey_R = 15,
+	LlxKey_S = 1,
+	LlxKey_T = 17,
+	LlxKey_U = 32,
+	LlxKey_V = 9,
+	LlxKey_W = 13,
+	LlxKey_X = 7,
+	LlxKey_Y = 16,
+	LlxKey_Z = 6,
+	LlxKey_Left		= 123,
+	LlxKey_Up		= 126,
+	LlxKey_Right	= 124,
+	LlxKey_Down		= 125,
+	LlxKey_Plus		= 69,
+	LlxKey_Minus	= 78,
+	LlxKey_0 = 29,
+	LlxKey_1 = 18,
+	LlxKey_2 = 19,
+	LlxKey_3 = 20,
+	LlxKey_4 = 21,
+	LlxKey_5 = 23,
+	LlxKey_6 = 22,
+	LlxKey_7 = 26,
+	LlxKey_8 = 28,
+	LlxKey_9 = 25,
+};
+
 # endif
 
 typedef struct s_llx_win

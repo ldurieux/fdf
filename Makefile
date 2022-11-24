@@ -48,12 +48,12 @@ LIB_NAMES	= \
 			  
 DYN_LIBS	= \
 			  m \
-			  Xext \
-			  X11 \
+			  #Xext \
+			  #X11 \
 
 FRAMEWORKS	= \
-			  #OpenGL \
-			  #AppKit \
+			  OpenGL \
+			  AppKit \
 
 DYN_LIBS	:= $(addprefix -l, $(DYN_LIBS))
 FRAMEWORKS	:= $(addprefix -framework , $(FRAMEWORKS))
