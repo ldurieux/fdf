@@ -18,13 +18,11 @@ void	llx_paint_fill(t_llx_paint *paint)
 	register uint32_t	*ptr;
 	register uint32_t	*end;
 	register uint32_t	color;
-	t_img_data			data;
 
 	if (!paint)
 		return ;
-	ptr = (uint32_t *)mlx_get_data_addr(paint->img, &data.pixel_bits,
-			&data.line_bytes, &data.endian);
-	end = ptr + paint->bounds.height * data.line_bytes / 4;
+	ptr = paint->data;
+	end = ptr + (size_t)(paint->bounds.height * paint->line_size);
 	color = paint->pen.ucolor;
 	while (ptr != end)
 	{

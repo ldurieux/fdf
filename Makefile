@@ -12,6 +12,7 @@ SRCS		= \
 			  srcs/llx/win/is_key_down.c \
 			  srcs/llx/win/event_handler_1.c \
 			  srcs/llx/win/event_handler_2.c \
+			  srcs/llx_paint/init.c \
 			  srcs/llx_paint/draw_tri.c \
 			  srcs/llx_paint/paint_line.c \
 			  srcs/llx_paint/draw_line_aa.c \

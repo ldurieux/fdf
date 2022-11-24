@@ -99,8 +99,8 @@ void	llx_paint_line(t_llx_paint *paint, t_point p1, t_point p2)
 	uint8_t		codes[2];
 
 	b = paint->bounds;
-	b.width -= b.x + 1;
-	b.height -= b.y + 1;
+	b.width--;
+	b.height--;
 	codes[0] = out_code(b, p1);
 	codes[1] = out_code(b, p2);
 	if (!line_clip(codes, &p1, &p2, b))

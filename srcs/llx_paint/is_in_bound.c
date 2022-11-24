@@ -15,10 +15,8 @@
 
 int	is_in_bound(t_llx_paint *paint, int x, int y)
 {
-	t_point	max;
+	t_rect	b;
 
-	max.x = paint->bounds.x + paint->bounds.width;
-	max.y = paint->bounds.y + paint->bounds.height;
-	return (x >= paint->bounds.x && x < max.x
-		&& y >= paint->bounds.y && y < max.y);
+	b = paint->bounds;
+	return (x >= b.x && x < b.width && y >= b.y && y < b.height);
 }

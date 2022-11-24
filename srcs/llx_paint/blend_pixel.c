@@ -16,15 +16,12 @@
 void	blend_pixel(t_llx_paint *paint, int x, int y, uint32_t color)
 {
 	t_rgba		*ptr;
-	t_img_data	data;
 	t_rgba		wanted;
 	t_rgba		origin;
 	float		blend;
 
 	wanted = *(t_rgba *)&color;
-	ptr = (t_rgba *)mlx_get_data_addr(paint->img, &data.pixel_bits,
-			&data.line_bytes, &data.endian);
-	ptr += y * data.line_bytes / 4 + x;
+	ptr = (t_rgba *)(paint->data + (y * paint->line_size + x));
 	if (wanted.a == 0)
 		*ptr = wanted;
 	else

@@ -13,16 +13,15 @@
 #include "fdf.h"
 #include "llx_paint_internal.h"
 
-static void	setup_paint(t_llx *llx, t_llx_paint *paint, t_fdf *fdf)
+static void	setup_paint(t_llx *llx, t_llx_paint *paint)
 {
 	t_llx_win	*win;
 
 	win = llx->windows[0];
-	*paint = (t_llx_paint){win->cache, Llx_Transparent, Llx_Black,
-		(t_rect){0, 0, fdf->win_size.width, fdf->win_size.height}, 0};
+	llx_paint_init(paint, win);
+	paint->pen.ucolor = Llx_Black;
 	llx_paint_fill(paint);
-	*paint = (t_llx_paint){win->cache, Llx_Transparent, Llx_White,
-		(t_rect){0, 0, fdf->win_size.width, fdf->win_size.height}, 0};
+	paint->pen.ucolor = Llx_White;
 }
 
 static void	draw_fdf_points(t_llx_paint *paint, register t_point *pts,
@@ -30,16 +29,14 @@ static void	draw_fdf_points(t_llx_paint *paint, register t_point *pts,
 {
 	register t_point	*end;
 	uint32_t			*img_ptr;
-	t_img_data			data;
 	register size_t		line_size;
 	register t_rect		bounds;
 
 	bounds = paint->bounds;
 	bounds.width = bounds.x + bounds.width;
 	bounds.height = bounds.y + bounds.height;
-	img_ptr = (uint32_t *)mlx_get_data_addr(paint->img, &data.pixel_bits,
-			&data.line_bytes, &data.endian);
-	line_size = data.line_bytes / 4;
+	img_ptr = paint->data;
+	line_size = paint->line_size;
 	end = pts + count;
 	while (pts != end)
 	{
@@ -106,7 +103,7 @@ int	fdf_on_loop(t_llx *llx)
 	t_point		*points;
 
 	fdf_while_key_down(llx->windows[0], llx->data);
-	setup_paint(llx, &paint, llx->data);
+	setup_paint(llx, &paint);
 	if (!fdf_project_points(llx->data, &points))
 		return (0);
 	draw_fdf(&paint, llx->data, points);

@@ -35,6 +35,7 @@ enum e_color
 enum e_paint_flag
 {
 	Paint_Flag_Antialiasing	= 0x1,
+	Paint_Flag_Gradient = 0x2,
 };
 
 typedef struct s_rgba
@@ -54,12 +55,16 @@ typedef union u_color
 
 typedef struct s_llx_paint
 {
-	void		*img;
+	uint32_t	*data;
+	int			line_size;
 	t_color		brush;
 	t_color		pen;
+	t_color		gradient;
 	t_rect		bounds;
 	uint32_t	flags;
 }	t_llx_paint;
+
+void	llx_paint_init(t_llx_paint *paint, t_llx_win *win);
 
 void	llx_paint_fill(t_llx_paint *paint);
 void	llx_paint_pixel(t_llx_paint *paint, t_point p);
