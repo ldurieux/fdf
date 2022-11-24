@@ -45,6 +45,8 @@ void	fdf_on_key_down(t_llx_win *win, int key)
 
 	fdf = win->llx->data;
 	preset_keys(fdf, key);
+	if (key == LlxKey_Escape)
+		llx_exit(win->llx, 0);
 	if (key == LlxKey_P)
 		fdf_switch_projection(fdf);
 	else if (key == LlxKey_M)

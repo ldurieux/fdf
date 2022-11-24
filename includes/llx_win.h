@@ -182,6 +182,7 @@ enum e_key
 	LlxKey_7 = 26,
 	LlxKey_8 = 28,
 	LlxKey_9 = 25,
+	LlxKey_Escape = 53,
 };
 
 # endif
