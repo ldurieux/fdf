@@ -21,6 +21,7 @@ static void	setup_paint(t_llx *llx, t_llx_paint *paint)
 	llx_paint_init(paint, win);
 	paint->pen.ucolor = Llx_Black;
 	llx_paint_fill(paint);
+	paint->flags |= Paint_Flag_Gradient;
 	paint->pen.ucolor = Llx_White;
 }
 
@@ -63,19 +64,22 @@ static void	draw_fdf_lines(t_llx_paint *paint, register t_point *pts,
 	idx = 0;
 	colors = fdf->colors;
 	map_size = fdf->map_size;
-	end = pts + count;
-	paint->pen.ucolor = Llx_White;
-	while (pts != end)
+	end = pts-- + count;
+	while (++pts != end)
 	{
 		if ((fdf->flags & Fdf_no_colors) == 0)
 			paint->pen = *colors;
 		if (idx % map_size.width < (size_t)map_size.width - 1)
+		{
+			paint->gradient = colors[1];
 			llx_paint_line(paint, *pts, *(pts + 1));
-		if (idx / map_size.width < (size_t)map_size.height - 1)
+		}
+		if (idx++ / map_size.width < (size_t)map_size.height - 1)
+		{
+			paint->gradient = colors[map_size.width];
 			llx_paint_line(paint, *pts, *(pts + map_size.width));
-		pts++;
+		}
 		colors++;
-		idx++;
 	}
 }
 

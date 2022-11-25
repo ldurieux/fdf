@@ -70,7 +70,7 @@ BUILDDIR	= build
 OBJS		= $(SRCS:%.c=$(BUILDDIR)/%.o) $(ASMSRCS:%.s=$(BUILDDIR)/%.o)
 DEPS		= $(SRCS:%.c=$(BUILDDIR)/%.d)
 CC			= cc
-CCWFLGS		= -Wall -Wextra -Werror -g3
+CCWFLGS		= -Wall -Wextra -Werror
 CCDBGFLGS	= -fsanitize=address -g3
 CCO1FLGS	= -O1 -march=native
 CCO2FLGS	= -O2 -march=native
