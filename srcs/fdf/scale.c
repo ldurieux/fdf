@@ -77,5 +77,7 @@ void	fdf_scale_to_fit(t_fdf *fdf)
 
 	section_scale = (float)fdf->map_size.width;
 	highest = find_highest(fdf->orig_points, fdf->map_size);
+	if (highest < 1.0f)
+		highest = 1.0f;
 	fdf->scale = (t_vec3){1 / section_scale, 1 / highest, 1 / section_scale};
 }
