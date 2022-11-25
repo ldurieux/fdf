@@ -1,4 +1,4 @@
-NAME		= llx
+NAME		= fdf
 
 SRCS		= \
 			  main.c \
