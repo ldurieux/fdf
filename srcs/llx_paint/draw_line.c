@@ -13,6 +13,8 @@
 #include "llx_paint_internal.h"
 #include "llx_paint.h"
 
+//static uint32_t	get_color(t_llx_paint *paint, )
+
 //Bresenham's line algorithm
 //https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
 static void	draw_bresenham_line(t_llx_paint *paint, t_point p1, t_point p2,

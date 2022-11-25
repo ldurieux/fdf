@@ -31,6 +31,7 @@ static int	start_llx(t_fdf *fdf)
 	llx->data = fdf;
 	win = llx_win_new(llx, fdf->win_size.width, fdf->win_size.height, "test");
 	win->on_key_down = fdf_on_key_down;
+	win->on_close = fdf_on_close;
 	llx->on_loop = fdf_on_loop;
 	return (llx_exec(llx));
 }

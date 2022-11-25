@@ -34,6 +34,7 @@ SRCS		= \
 			  srcs/fdf/on_key_down.c \
 			  srcs/fdf/load_preset.c \
 			  srcs/fdf/project_points.c \
+			  srcs/fdf/on_close.c \
 
 HEADERS		= \
 			  includes \
@@ -69,8 +70,8 @@ BUILDDIR	= build
 OBJS		= $(SRCS:%.c=$(BUILDDIR)/%.o) $(ASMSRCS:%.s=$(BUILDDIR)/%.o)
 DEPS		= $(SRCS:%.c=$(BUILDDIR)/%.d)
 CC			= cc
-CCWFLGS		= -Wall -Wextra -Werror
-CCDBGFLGS	= -g3
+CCWFLGS		= -Wall -Wextra -Werror -g3
+CCDBGFLGS	= -fsanitize=address -g3
 CCO1FLGS	= -O1 -march=native
 CCO2FLGS	= -O2 -march=native
 CCO3FLGS	= -O3 -march=native
@@ -86,7 +87,7 @@ NASMFLAGS	= -felf64
 all : libs $(NAME)
 
 $(NAME) : $(LIB_PATHS) $(OBJS)
-		$(CC) $(CCWFLGS) $(CCDBGFLGS) -o $(NAME) $(OBJS) $(LIB_LD) $(LIBS) $(DYN_LIBS) $(FRAMEWORKS)
+		$(CC) $(CCWFLGS) -o $(NAME) $(OBJS) $(LIB_LD) $(LIBS) $(DYN_LIBS) $(FRAMEWORKS)
 
 bonus : $(NAME)
 
@@ -114,7 +115,7 @@ $(BUILDDIR)/%.o : %.s Makefile $(LIB_PATHS)
 
 $(BUILDDIR)/%.o : %.c Makefile $(LIB_PATHS)
 		@mkdir -p $(@D)
-		$(CC) $(CCWFLGS) $(DEPSFLAGS) $(CCDBGFLGS) $(CCDEFSFLGS) -I$(HEADERS) $(LIB_HEADERS) -c $< -o $@
+		$(CC) $(CCWFLGS) $(DEPSFLAGS) $(CCDEFSFLGS) -I$(HEADERS) $(LIB_HEADERS) -c $< -o $@
 
 .PHONY: all clean fclean re bonus libs
 

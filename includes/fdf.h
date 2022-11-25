@@ -45,6 +45,7 @@ typedef struct s_fdf
 int		fdf_on_loop(t_llx *llx);
 void	fdf_on_key_down(t_llx_win *win, int key);
 void	fdf_while_key_down(t_llx_win *win, t_fdf *fdf);
+void	fdf_on_close(t_llx_win *win);
 
 int		fdf_project_points(t_fdf *fdf, t_point **points);
 

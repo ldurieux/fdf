@@ -23,10 +23,12 @@ void	llx_destroy(t_llx *llx)
 	{
 		i = (size_t) - 1;
 		while (llx->windows[++i])
+		{
+			if (llx->windows[i]->on_close)
+				llx->windows[i]->on_close(llx->windows[i]);
 			llx_win_delete(llx->windows[i]);
+		}
 		free(llx->windows);
 	}
-	if (llx->mlx)
-		free(llx->mlx);
 	free(llx);
 }

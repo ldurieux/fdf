@@ -12,6 +12,7 @@
 
 #include "llx.h"
 #include "llx_internal.h"
+#include "ft_printf.h"
 
 static t_llx	*on_error(t_llx *llx)
 {

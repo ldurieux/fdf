@@ -15,10 +15,13 @@
 
 static void	llx_on_exit(t_llx *llx)
 {
+	int	exit_code;
+
+	exit_code = llx->exit_code;
 	if (llx->on_exit)
 		llx->on_exit(llx);
 	llx_destroy(llx);
-	exit(llx->exit_code);
+	exit(exit_code);
 }
 
 int	llx_on_loop(t_llx *llx)
